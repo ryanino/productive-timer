@@ -1,10 +1,11 @@
+import java.lang.System;
+
 public class Timer {
 
-    private long startTime, end, endTime, endTimeS, endTimeM, endTimeH;
+    private static long startTime, end, endTime, endTimeMillis, endTimeS, endTimeM, endTimeH;
 
     public Timer() {
 
-        startTime = 0;
         endTimeS = 0;
         endTimeM = 0;
         endTimeH = 0;
@@ -18,19 +19,20 @@ public class Timer {
     public void stop() {
 
         end = System.currentTimeMillis() - startTime;
-        System.out.println(end);
         endTime = end / 1000;
+        endTimeMillis = end % 60;
         endTimeS = endTime % 60;
         endTimeM = (endTime / 60) % 60;
         endTimeH = (endTime / 3600) % 60;
-    }
-
-    public void clear() {
-
         startTime = 0;
-        endTime = 0;
         end = 0;
     }
+
+    public long getMillis() {
+
+        return endTimeMillis;
+    }
+
     public long getSeconds() {
 
         return endTimeS;
